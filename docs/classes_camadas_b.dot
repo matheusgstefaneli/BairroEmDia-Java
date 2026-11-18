@@ -1,0 +1,22 @@
+digraph G {
+  graph [rankdir=LR, fontname="DejaVu Sans", nodesep=0.35, ranksep=1.3, pad=0.3];
+  node  [shape=plain, fontname="DejaVu Sans", fontsize=10];
+  edge  [fontname="DejaVu Sans", fontsize=9, arrowhead=vee];
+  subgraph cluster_bo { label="bo"; style=dashed; color="#888888";
+  MoradorBo [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#FFF0F0"><TR><TD><B>MoradorBo</B></TD></TR></TABLE>>];
+  CategoriaBo [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#FFF0F0"><TR><TD><B>CategoriaBo</B></TD></TR></TABLE>>];
+  OcorrenciaBo [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#FFF0F0"><TR><TD><B>OcorrenciaBo</B></TD></TR></TABLE>>];
+  }
+  subgraph cluster_dao { label="dao"; style=dashed; color="#888888";
+    MoradorDao [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#EAF3FF"><TR><TD><B>MoradorDao</B></TD></TR><HR/><TR><TD ALIGN="LEFT">- repository : MoradorRepository<BR ALIGN="LEFT"/>+ listarTodos() : List&lt;Morador&gt;<BR ALIGN="LEFT"/>+ buscarPorId(id) : Optional&lt;Morador&gt;<BR ALIGN="LEFT"/>+ buscarPorEmail(email) : Optional&lt;Morador&gt;<BR ALIGN="LEFT"/>+ salvar(m) : Morador / excluir(m) : void<BR ALIGN="LEFT"/></TD></TR></TABLE>>];
+    CategoriaDao [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#EAF3FF"><TR><TD><B>CategoriaDao</B></TD></TR><HR/><TR><TD ALIGN="LEFT">- repository : CategoriaRepository<BR ALIGN="LEFT"/>+ listarTodas() / buscarPorId(id)<BR ALIGN="LEFT"/>+ buscarPorNome(nome) : Optional&lt;Categoria&gt;<BR ALIGN="LEFT"/>+ salvar(c) / excluir(c)<BR ALIGN="LEFT"/></TD></TR></TABLE>>];
+    OcorrenciaDao [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#EAF3FF"><TR><TD><B>OcorrenciaDao</B></TD></TR><HR/><TR><TD ALIGN="LEFT">- repository : OcorrenciaRepository<BR ALIGN="LEFT"/>+ listarTodas() / buscarPorId(id)<BR ALIGN="LEFT"/>+ existePorMorador(id) : boolean<BR ALIGN="LEFT"/>+ existePorCategoria(id) : boolean<BR ALIGN="LEFT"/>+ salvar(o) / excluir(o)<BR ALIGN="LEFT"/></TD></TR></TABLE>>];
+    MoradorRepository [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#EDF8EA"><TR><TD><I>&laquo;interface&raquo;</I><BR/><B>MoradorRepository</B><BR/>extends JpaRepository&lt;Morador, Long&gt;</TD></TR><HR/><TR><TD ALIGN="LEFT">findByEmail(email) : Optional&lt;Morador&gt;<BR ALIGN="LEFT"/></TD></TR></TABLE>>];
+    CategoriaRepository [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#EDF8EA"><TR><TD><I>&laquo;interface&raquo;</I><BR/><B>CategoriaRepository</B><BR/>extends JpaRepository&lt;Categoria, Long&gt;</TD></TR><HR/><TR><TD ALIGN="LEFT">findByNomeIgnoreCase(nome) : Optional&lt;Categoria&gt;<BR ALIGN="LEFT"/></TD></TR></TABLE>>];
+    OcorrenciaRepository [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#EDF8EA"><TR><TD><I>&laquo;interface&raquo;</I><BR/><B>OcorrenciaRepository</B><BR/>extends JpaRepository&lt;Ocorrencia, Long&gt;</TD></TR><HR/><TR><TD ALIGN="LEFT">existsByMoradorId(id) : boolean<BR ALIGN="LEFT"/>existsByCategoriaId(id) : boolean<BR ALIGN="LEFT"/></TD></TR></TABLE>>];
+  }
+  MoradorBo -> MoradorDao; MoradorBo -> OcorrenciaDao;
+  CategoriaBo -> CategoriaDao; CategoriaBo -> OcorrenciaDao;
+  OcorrenciaBo -> OcorrenciaDao; OcorrenciaBo -> MoradorDao; OcorrenciaBo -> CategoriaDao;
+  MoradorDao -> MoradorRepository; CategoriaDao -> CategoriaRepository; OcorrenciaDao -> OcorrenciaRepository;
+}

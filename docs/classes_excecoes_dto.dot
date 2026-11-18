@@ -1,0 +1,20 @@
+digraph G {
+  graph [rankdir=TB, fontname="DejaVu Sans", nodesep=0.4, ranksep=0.8, pad=0.3];
+  node  [shape=plain, fontname="DejaVu Sans", fontsize=10];
+  edge  [fontname="DejaVu Sans", fontsize=9];
+
+  RuntimeException [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#F5F5F5"><TR><TD><B>RuntimeException</B><BR/>(java.lang)</TD></TR></TABLE>>];
+  RecursoNaoEncontradoException [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#FFF0F0"><TR><TD><B>RecursoNaoEncontradoException</B><BR/>(HTTP 404)</TD></TR><HR/><TR><TD ALIGN="LEFT">+ RecursoNaoEncontradoException(recurso : String, id : Long)<BR ALIGN="LEFT"/>+ RecursoNaoEncontradoException(mensagem : String)<BR ALIGN="LEFT"/></TD></TR></TABLE>>];
+  DadosInvalidosException [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#FFF0F0"><TR><TD><B>DadosInvalidosException</B><BR/>(HTTP 400)</TD></TR><HR/><TR><TD ALIGN="LEFT">+ DadosInvalidosException(mensagem : String)<BR ALIGN="LEFT"/></TD></TR></TABLE>>];
+  ConflitoException [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#FFF0F0"><TR><TD><B>ConflitoException</B><BR/>(HTTP 409)</TD></TR><HR/><TR><TD ALIGN="LEFT">+ ConflitoException(mensagem : String)<BR ALIGN="LEFT"/></TD></TR></TABLE>>];
+  GlobalExceptionHandler [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#F3EEFF"><TR><TD><I>&laquo;RestControllerAdvice&raquo;</I><BR/><B>GlobalExceptionHandler</B></TD></TR><HR/><TR><TD ALIGN="LEFT">+ naoEncontrado(...) : 404<BR ALIGN="LEFT"/>+ dadosInvalidos(...) : 400<BR ALIGN="LEFT"/>+ conflito(...) : 409<BR ALIGN="LEFT"/>+ validacao(MethodArgumentNotValidException) : 400<BR ALIGN="LEFT"/>+ jsonInvalido(HttpMessageNotReadableException) : 400<BR ALIGN="LEFT"/>+ tipoInvalido(MethodArgumentTypeMismatchException) : 400<BR ALIGN="LEFT"/>+ metodoNaoSuportado(...) : 405<BR ALIGN="LEFT"/>+ rotaInexistente(NoResourceFoundException) : 404<BR ALIGN="LEFT"/>+ integridade(DataIntegrityViolationException) : 409<BR ALIGN="LEFT"/>+ erroInterno(Exception) : 500<BR ALIGN="LEFT"/></TD></TR></TABLE>>];
+  ErroResposta [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#EDF8EA"><TR><TD><I>&laquo;record&raquo;</I><BR/><B>ErroResposta</B></TD></TR><HR/><TR><TD ALIGN="LEFT">timestamp : LocalDateTime<BR ALIGN="LEFT"/>status : int<BR ALIGN="LEFT"/>erro : String<BR ALIGN="LEFT"/>mensagem : String<BR ALIGN="LEFT"/>caminho : String<BR ALIGN="LEFT"/>detalhes : List&lt;String&gt;<BR ALIGN="LEFT"/></TD></TR></TABLE>>];
+
+  RecursoNaoEncontradoException -> RuntimeException [arrowhead=empty];
+  DadosInvalidosException -> RuntimeException [arrowhead=empty];
+  ConflitoException -> RuntimeException [arrowhead=empty];
+  GlobalExceptionHandler -> RecursoNaoEncontradoException [style=dashed, arrowhead=vee, label="trata"];
+  GlobalExceptionHandler -> DadosInvalidosException [style=dashed, arrowhead=vee];
+  GlobalExceptionHandler -> ConflitoException [style=dashed, arrowhead=vee];
+  GlobalExceptionHandler -> ErroResposta [arrowhead=vee, label="retorna"];
+}

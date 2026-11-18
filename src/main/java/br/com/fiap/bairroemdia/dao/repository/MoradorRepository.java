@@ -1,0 +1,11 @@
+package br.com.fiap.bairroemdia.dao.repository;
+
+import br.com.fiap.bairroemdia.model.Morador;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.Optional;
+
+public interface MoradorRepository extends JpaRepository<Morador, Long> {
+
+    Optional<Morador> findByEmail(String email);
+}

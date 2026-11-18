@@ -1,0 +1,123 @@
+### Requisições para o IntelliJ HTTP Client (também servem de roteiro para Insomnia/Postman)
+### Troque o host abaixo pela URL do Render depois do deploy
+@host = http://localhost:8080
+
+### Status da API
+GET {{host}}/
+
+### ---------- MORADORES ----------
+POST {{host}}/moradores
+Content-Type: application/json
+
+{
+  "nome": "Matheus Gomes Stefaneli",
+  "email": "matheus@example.com"
+}
+
+###
+GET {{host}}/moradores
+
+###
+GET {{host}}/moradores/1
+
+###
+PUT {{host}}/moradores/1
+Content-Type: application/json
+
+{
+  "nome": "Matheus G. Stefaneli",
+  "email": "matheus@example.com"
+}
+
+###
+DELETE {{host}}/moradores/1
+
+### ---------- CATEGORIAS ----------
+POST {{host}}/categorias
+Content-Type: application/json
+
+{
+  "nome": "Buraco na rua",
+  "descricao": "Buracos e falhas no asfalto"
+}
+
+###
+GET {{host}}/categorias
+
+###
+GET {{host}}/categorias/1
+
+###
+PUT {{host}}/categorias/1
+Content-Type: application/json
+
+{
+  "nome": "Buraco na rua",
+  "descricao": "Buracos e falhas no pavimento"
+}
+
+###
+DELETE {{host}}/categorias/1
+
+### ---------- OCORRÊNCIAS ----------
+POST {{host}}/ocorrencias
+Content-Type: application/json
+
+{
+  "titulo": "Buraco na Rua das Flores",
+  "descricao": "Buraco grande em frente ao número 120",
+  "localizacao": "Rua das Flores, 120",
+  "prioridade": 4,
+  "moradorId": 1,
+  "categoriaId": 1
+}
+
+###
+GET {{host}}/ocorrencias
+
+###
+GET {{host}}/ocorrencias/1
+
+###
+PUT {{host}}/ocorrencias/1
+Content-Type: application/json
+
+{
+  "titulo": "Buraco na Rua das Flores",
+  "descricao": "Buraco grande, já causou acidente",
+  "localizacao": "Rua das Flores, 120",
+  "prioridade": 5,
+  "status": "EM_ANALISE",
+  "categoriaId": 1
+}
+
+### Alterar apenas o status (ABERTA -> EM_ANALISE -> EM_ANDAMENTO -> RESOLVIDA)
+PATCH {{host}}/ocorrencias/1/status
+Content-Type: application/json
+
+{ "status": "EM_ANDAMENTO" }
+
+### Alterar apenas a prioridade (1 a 5)
+PATCH {{host}}/ocorrencias/1/prioridade
+Content-Type: application/json
+
+{ "prioridade": 3 }
+
+###
+DELETE {{host}}/ocorrencias/1
+
+### ---------- CASOS DE ERRO ----------
+### 400 - prioridade inválida
+POST {{host}}/ocorrencias
+Content-Type: application/json
+
+{ "titulo": "x", "descricao": "y", "localizacao": "z", "prioridade": 9, "moradorId": 1, "categoriaId": 1 }
+
+### 404 - registro inexistente
+GET {{host}}/ocorrencias/999999
+
+### Finalizar ocorrência
+PATCH {{host}}/ocorrencias/1/status
+Content-Type: application/json
+
+{ "status": "RESOLVIDA" }

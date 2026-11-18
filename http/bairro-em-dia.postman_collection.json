@@ -1,0 +1,479 @@
+{
+  "info": {
+    "name": "Bairro em Dia - API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "host",
+      "value": "http://localhost:8080"
+    }
+  ],
+  "item": [
+    {
+      "name": "Status",
+      "item": [
+        {
+          "name": "GET /",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{host}}/",
+              "host": [
+                "{{host}}"
+              ],
+              "path": []
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Moradores",
+      "item": [
+        {
+          "name": "Listar",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{host}}/moradores",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "moradores"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Buscar por id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{host}}/moradores/1",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "moradores",
+                "1"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Criar",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{host}}/moradores",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "moradores"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"Matheus Gomes Stefaneli\",\n  \"email\": \"matheus@example.com\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Atualizar",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{host}}/moradores/1",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "moradores",
+                "1"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"Matheus Gomes Stefaneli\",\n  \"email\": \"matheus@example.com\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Excluir",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{host}}/moradores/1",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "moradores",
+                "1"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Categorias",
+      "item": [
+        {
+          "name": "Listar",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{host}}/categorias",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "categorias"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Buscar por id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{host}}/categorias/1",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "categorias",
+                "1"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Criar",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{host}}/categorias",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "categorias"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"Buraco na rua\",\n  \"descricao\": \"Buracos e falhas no asfalto\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Atualizar",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{host}}/categorias/1",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "categorias",
+                "1"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"Buraco na rua\",\n  \"descricao\": \"Buracos e falhas no asfalto\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Excluir",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{host}}/categorias/1",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "categorias",
+                "1"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Ocorrências",
+      "item": [
+        {
+          "name": "Listar",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{host}}/ocorrencias",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "ocorrencias"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Buscar por id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{host}}/ocorrencias/1",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "ocorrencias",
+                "1"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Criar",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{host}}/ocorrencias",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "ocorrencias"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"titulo\": \"Buraco na Rua das Flores\",\n  \"descricao\": \"Buraco grande em frente ao número 120\",\n  \"localizacao\": \"Rua das Flores, 120\",\n  \"prioridade\": 4,\n  \"moradorId\": 1,\n  \"categoriaId\": 1\n}"
+            }
+          }
+        },
+        {
+          "name": "Atualizar (PUT)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{host}}/ocorrencias/1",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "ocorrencias",
+                "1"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"titulo\": \"Buraco na Rua das Flores\",\n  \"descricao\": \"Buraco grande, já causou acidente\",\n  \"localizacao\": \"Rua das Flores, 120\",\n  \"prioridade\": 5,\n  \"status\": \"EM_ANALISE\",\n  \"categoriaId\": 1\n}"
+            }
+          }
+        },
+        {
+          "name": "Alterar status",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{host}}/ocorrencias/1/status",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "ocorrencias",
+                "1",
+                "status"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"EM_ANDAMENTO\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Alterar prioridade",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{host}}/ocorrencias/1/prioridade",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "ocorrencias",
+                "1",
+                "prioridade"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"prioridade\": 3\n}"
+            }
+          }
+        },
+        {
+          "name": "Excluir",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{host}}/ocorrencias/1",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "ocorrencias",
+                "1"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Erros esperados",
+      "item": [
+        {
+          "name": "400 prioridade inválida",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{host}}/ocorrencias",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "ocorrencias"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"titulo\": \"Buraco na Rua das Flores\",\n  \"descricao\": \"Buraco grande em frente ao número 120\",\n  \"localizacao\": \"Rua das Flores, 120\",\n  \"prioridade\": 9,\n  \"moradorId\": 1,\n  \"categoriaId\": 1\n}"
+            }
+          }
+        },
+        {
+          "name": "404 inexistente",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{host}}/ocorrencias/999999",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "ocorrencias",
+                "999999"
+              ]
+            }
+          }
+        },
+        {
+          "name": "409 transição inválida",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{host}}/ocorrencias/1/status",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "ocorrencias",
+                "1",
+                "status"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"RESOLVIDA\"\n}"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

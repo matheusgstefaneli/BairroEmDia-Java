@@ -1,0 +1,33 @@
+digraph G {
+  graph [rankdir=LR, fontname="DejaVu Sans", nodesep=0.35, ranksep=1.0, pad=0.3, compound=true];
+  node  [shape=plain, fontname="DejaVu Sans", fontsize=10];
+  edge  [fontname="DejaVu Sans", fontsize=9, arrowhead=vee, style=solid];
+
+  subgraph cluster_ctrl { label="controller"; style=dashed; color="#888888"; fontname="DejaVu Sans";
+    MoradorController [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#F3EEFF"><TR><TD><B>MoradorController</B></TD></TR><HR/><TR><TD ALIGN="LEFT">- bo : MoradorBo<BR ALIGN="LEFT"/>+ listar() : List&lt;MoradorResponse&gt;<BR ALIGN="LEFT"/>+ buscar(id : Long) : MoradorResponse<BR ALIGN="LEFT"/>+ criar(req : MoradorRequest) : ResponseEntity<BR ALIGN="LEFT"/>+ atualizar(id : Long, req : MoradorRequest)<BR ALIGN="LEFT"/>+ excluir(id : Long) : ResponseEntity&lt;Void&gt;<BR ALIGN="LEFT"/></TD></TR></TABLE>>];
+    CategoriaController [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#F3EEFF"><TR><TD><B>CategoriaController</B></TD></TR><HR/><TR><TD ALIGN="LEFT">- bo : CategoriaBo<BR ALIGN="LEFT"/>+ listar() / buscar(id) / criar(req)<BR ALIGN="LEFT"/>+ atualizar(id, req) / excluir(id)<BR ALIGN="LEFT"/></TD></TR></TABLE>>];
+    OcorrenciaController [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#F3EEFF"><TR><TD><B>OcorrenciaController</B></TD></TR><HR/><TR><TD ALIGN="LEFT">- bo : OcorrenciaBo<BR ALIGN="LEFT"/>+ listar() / buscar(id) / criar(req)<BR ALIGN="LEFT"/>+ atualizar(id, req : OcorrenciaUpdateRequest)<BR ALIGN="LEFT"/>+ alterarStatus(id, req : StatusRequest)<BR ALIGN="LEFT"/>+ alterarPrioridade(id, req : PrioridadeRequest)<BR ALIGN="LEFT"/>+ excluir(id : Long)<BR ALIGN="LEFT"/></TD></TR></TABLE>>];
+    StatusController [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#F3EEFF"><TR><TD><B>StatusController</B></TD></TR><HR/><TR><TD ALIGN="LEFT">+ status() : Map&lt;String, Object&gt;<BR ALIGN="LEFT"/></TD></TR></TABLE>>];
+  }
+
+  subgraph cluster_bo { label="bo"; style=dashed; color="#888888"; fontname="DejaVu Sans";
+    MoradorBo [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#FFF0F0"><TR><TD><B>MoradorBo</B></TD></TR><HR/><TR><TD ALIGN="LEFT">- moradorDao : MoradorDao<BR ALIGN="LEFT"/>- ocorrenciaDao : OcorrenciaDao<BR ALIGN="LEFT"/>+ listar() : List&lt;Morador&gt;<BR ALIGN="LEFT"/>+ buscar(id : Long) : Morador<BR ALIGN="LEFT"/>+ criar(req) / atualizar(id, req)<BR ALIGN="LEFT"/>+ excluir(id : Long) : void<BR ALIGN="LEFT"/></TD></TR></TABLE>>];
+    CategoriaBo [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#FFF0F0"><TR><TD><B>CategoriaBo</B></TD></TR><HR/><TR><TD ALIGN="LEFT">- categoriaDao : CategoriaDao<BR ALIGN="LEFT"/>- ocorrenciaDao : OcorrenciaDao<BR ALIGN="LEFT"/>+ listar() / buscar(id) / criar(req)<BR ALIGN="LEFT"/>+ atualizar(id, req) / excluir(id)<BR ALIGN="LEFT"/></TD></TR></TABLE>>];
+    OcorrenciaBo [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#FFF0F0"><TR><TD><B>OcorrenciaBo</B></TD></TR><HR/><TR><TD ALIGN="LEFT">- ocorrenciaDao : OcorrenciaDao<BR ALIGN="LEFT"/>- moradorDao : MoradorDao<BR ALIGN="LEFT"/>- categoriaDao : CategoriaDao<BR ALIGN="LEFT"/>+ listar() / buscar(id) / criar(req)<BR ALIGN="LEFT"/>+ atualizar(id, req : OcorrenciaUpdateRequest)<BR ALIGN="LEFT"/>+ alterarStatus(id, novoStatus : StatusOcorrencia)<BR ALIGN="LEFT"/>+ alterarPrioridade(id, novaPrioridade : Integer)<BR ALIGN="LEFT"/>+ excluir(id : Long) : void<BR ALIGN="LEFT"/>- garantirNaoFinalizada(o : Ocorrencia) : void<BR ALIGN="LEFT"/>- validarTransicao(atual, novo : StatusOcorrencia) : void<BR ALIGN="LEFT"/></TD></TR></TABLE>>];
+  }
+
+  subgraph cluster_dao { label="dao"; style=dashed; color="#888888"; fontname="DejaVu Sans";
+    MoradorDao [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#EAF3FF"><TR><TD><B>MoradorDao</B></TD></TR><HR/><TR><TD ALIGN="LEFT">- repository : MoradorRepository<BR ALIGN="LEFT"/>+ listarTodos() : List&lt;Morador&gt;<BR ALIGN="LEFT"/>+ buscarPorId(id) : Optional&lt;Morador&gt;<BR ALIGN="LEFT"/>+ buscarPorEmail(email) : Optional&lt;Morador&gt;<BR ALIGN="LEFT"/>+ salvar(m) : Morador / excluir(m) : void<BR ALIGN="LEFT"/></TD></TR></TABLE>>];
+    CategoriaDao [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#EAF3FF"><TR><TD><B>CategoriaDao</B></TD></TR><HR/><TR><TD ALIGN="LEFT">- repository : CategoriaRepository<BR ALIGN="LEFT"/>+ listarTodas() / buscarPorId(id)<BR ALIGN="LEFT"/>+ buscarPorNome(nome) : Optional&lt;Categoria&gt;<BR ALIGN="LEFT"/>+ salvar(c) / excluir(c)<BR ALIGN="LEFT"/></TD></TR></TABLE>>];
+    OcorrenciaDao [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#EAF3FF"><TR><TD><B>OcorrenciaDao</B></TD></TR><HR/><TR><TD ALIGN="LEFT">- repository : OcorrenciaRepository<BR ALIGN="LEFT"/>+ listarTodas() / buscarPorId(id)<BR ALIGN="LEFT"/>+ existePorMorador(id) : boolean<BR ALIGN="LEFT"/>+ existePorCategoria(id) : boolean<BR ALIGN="LEFT"/>+ salvar(o) / excluir(o)<BR ALIGN="LEFT"/></TD></TR></TABLE>>];
+    MoradorRepository [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#EDF8EA"><TR><TD><I>&laquo;interface&raquo;</I><BR/><B>MoradorRepository</B><BR/>extends JpaRepository&lt;Morador, Long&gt;</TD></TR><HR/><TR><TD ALIGN="LEFT">findByEmail(email) : Optional&lt;Morador&gt;<BR ALIGN="LEFT"/></TD></TR></TABLE>>];
+    CategoriaRepository [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#EDF8EA"><TR><TD><I>&laquo;interface&raquo;</I><BR/><B>CategoriaRepository</B><BR/>extends JpaRepository&lt;Categoria, Long&gt;</TD></TR><HR/><TR><TD ALIGN="LEFT">findByNomeIgnoreCase(nome) : Optional&lt;Categoria&gt;<BR ALIGN="LEFT"/></TD></TR></TABLE>>];
+    OcorrenciaRepository [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#EDF8EA"><TR><TD><I>&laquo;interface&raquo;</I><BR/><B>OcorrenciaRepository</B><BR/>extends JpaRepository&lt;Ocorrencia, Long&gt;</TD></TR><HR/><TR><TD ALIGN="LEFT">existsByMoradorId(id) : boolean<BR ALIGN="LEFT"/>existsByCategoriaId(id) : boolean<BR ALIGN="LEFT"/></TD></TR></TABLE>>];
+  }
+
+  MoradorController -> MoradorBo; CategoriaController -> CategoriaBo; OcorrenciaController -> OcorrenciaBo;
+  MoradorBo -> MoradorDao; MoradorBo -> OcorrenciaDao;
+  CategoriaBo -> CategoriaDao; CategoriaBo -> OcorrenciaDao;
+  OcorrenciaBo -> OcorrenciaDao; OcorrenciaBo -> MoradorDao; OcorrenciaBo -> CategoriaDao;
+  MoradorDao -> MoradorRepository; CategoriaDao -> CategoriaRepository; OcorrenciaDao -> OcorrenciaRepository;
+}

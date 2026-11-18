@@ -1,0 +1,37 @@
+digraph G {
+  graph [rankdir=TB, fontname="DejaVu Sans", nodesep=0.6, ranksep=1.0, pad=0.3];
+  node  [shape=plain, fontname="DejaVu Sans", fontsize=10];
+  edge  [fontname="DejaVu Sans", fontsize=10];
+
+  Morador [label=<
+  <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4" BGCOLOR="#EAF3FF">
+   <TR><TD><B>Morador</B></TD></TR><HR/>
+   <TR><TD ALIGN="LEFT">- id : Long<BR ALIGN="LEFT"/>- nome : String<BR ALIGN="LEFT"/>- email : String<BR ALIGN="LEFT"/></TD></TR><HR/>
+   <TR><TD ALIGN="LEFT"># Morador()<BR ALIGN="LEFT"/>+ Morador(nome : String, email : String)<BR ALIGN="LEFT"/>+ atualizar(nome : String, email : String) : void<BR ALIGN="LEFT"/>+ getId() : Long<BR ALIGN="LEFT"/>+ getNome() : String<BR ALIGN="LEFT"/>+ getEmail() : String<BR ALIGN="LEFT"/></TD></TR>
+  </TABLE>>];
+
+  Categoria [label=<
+  <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4" BGCOLOR="#EAF3FF">
+   <TR><TD><B>Categoria</B></TD></TR><HR/>
+   <TR><TD ALIGN="LEFT">- id : Long<BR ALIGN="LEFT"/>- nome : String<BR ALIGN="LEFT"/>- descricao : String<BR ALIGN="LEFT"/></TD></TR><HR/>
+   <TR><TD ALIGN="LEFT"># Categoria()<BR ALIGN="LEFT"/>+ Categoria(nome : String, descricao : String)<BR ALIGN="LEFT"/>+ atualizar(nome : String, descricao : String) : void<BR ALIGN="LEFT"/>+ getId() : Long<BR ALIGN="LEFT"/>+ getNome() : String<BR ALIGN="LEFT"/>+ getDescricao() : String<BR ALIGN="LEFT"/></TD></TR>
+  </TABLE>>];
+
+  Ocorrencia [label=<
+  <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4" BGCOLOR="#FFF6E0">
+   <TR><TD><B>Ocorrencia</B></TD></TR><HR/>
+   <TR><TD ALIGN="LEFT">+ PRIORIDADE_MIN : int = 1 {static, final}<BR ALIGN="LEFT"/>+ PRIORIDADE_MAX : int = 5 {static, final}<BR ALIGN="LEFT"/>- id : Long<BR ALIGN="LEFT"/>- titulo : String<BR ALIGN="LEFT"/>- descricao : String<BR ALIGN="LEFT"/>- localizacao : String<BR ALIGN="LEFT"/>- prioridade : Integer<BR ALIGN="LEFT"/>- status : StatusOcorrencia<BR ALIGN="LEFT"/>- dataCriacao : LocalDateTime<BR ALIGN="LEFT"/>- morador : Morador<BR ALIGN="LEFT"/>- categoria : Categoria<BR ALIGN="LEFT"/></TD></TR><HR/>
+   <TR><TD ALIGN="LEFT"># Ocorrencia()<BR ALIGN="LEFT"/>+ Ocorrencia(titulo, descricao, localizacao : String,<BR ALIGN="LEFT"/>      prioridade : Integer, morador : Morador, categoria : Categoria)<BR ALIGN="LEFT"/>+ atualizarDados(titulo, descricao, localizacao : String,<BR ALIGN="LEFT"/>      categoria : Categoria) : void<BR ALIGN="LEFT"/>+ alterarPrioridade(prioridade : Integer) : void<BR ALIGN="LEFT"/>+ alterarStatus(novoStatus : StatusOcorrencia) : void<BR ALIGN="LEFT"/>+ isFinalizada() : boolean<BR ALIGN="LEFT"/>+ getters (id, titulo, descricao, localizacao,<BR ALIGN="LEFT"/>      prioridade, status, dataCriacao, morador, categoria)<BR ALIGN="LEFT"/></TD></TR>
+  </TABLE>>];
+
+  StatusOcorrencia [label=<
+  <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4" BGCOLOR="#EDF8EA">
+   <TR><TD><I>&laquo;enumeration&raquo;</I><BR/><B>StatusOcorrencia</B></TD></TR><HR/>
+   <TR><TD ALIGN="LEFT">ABERTA<BR ALIGN="LEFT"/>EM_ANALISE<BR ALIGN="LEFT"/>EM_ANDAMENTO<BR ALIGN="LEFT"/>RESOLVIDA<BR ALIGN="LEFT"/>CANCELADA<BR ALIGN="LEFT"/></TD></TR><HR/>
+   <TR><TD ALIGN="LEFT">+ proximosPermitidos() : Set&lt;StatusOcorrencia&gt;<BR ALIGN="LEFT"/>+ podeTransitarPara(destino : StatusOcorrencia) : boolean<BR ALIGN="LEFT"/>+ isFinal() : boolean<BR ALIGN="LEFT"/></TD></TR>
+  </TABLE>>];
+
+  Morador   -> Ocorrencia [arrowhead=none, taillabel="1", headlabel="0..*", label="registra", labeldistance=2.0];
+  Categoria -> Ocorrencia [arrowhead=none, taillabel="1", headlabel="0..*", label="classifica", labeldistance=2.0];
+  Ocorrencia -> StatusOcorrencia [arrowhead=vee, taillabel="*", headlabel="1", label="status", labeldistance=2.0];
+}

@@ -1,0 +1,14 @@
+# Blueprint opcional do Render (também é possível criar o serviço manualmente pelo painel)
+services:
+  - type: web
+    name: bairro-em-dia
+    runtime: docker
+    plan: free
+    healthCheckPath: /
+    envVars:
+      - key: DB_URL
+        sync: false
+      - key: DB_USER
+        sync: false
+      - key: DB_PASSWORD
+        sync: false

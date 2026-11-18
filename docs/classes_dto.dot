@@ -1,0 +1,23 @@
+digraph G {
+  graph [rankdir=LR, fontname="DejaVu Sans", nodesep=0.35, ranksep=1.2, pad=0.3];
+  node  [shape=plain, fontname="DejaVu Sans", fontsize=10];
+  edge  [fontname="DejaVu Sans", fontsize=9, arrowhead=vee, style=dashed];
+
+  MoradorRequest [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#EDF8EA"><TR><TD><I>&laquo;record&raquo;</I><BR/><B>MoradorRequest</B></TD></TR><HR/><TR><TD ALIGN="LEFT">nome : String<BR ALIGN="LEFT"/>email : String<BR ALIGN="LEFT"/></TD></TR></TABLE>>];
+  MoradorResponse [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#EDF8EA"><TR><TD><I>&laquo;record&raquo;</I><BR/><B>MoradorResponse</B></TD></TR><HR/><TR><TD ALIGN="LEFT">id : Long<BR ALIGN="LEFT"/>nome : String<BR ALIGN="LEFT"/>email : String<BR ALIGN="LEFT"/></TD></TR><HR/><TR><TD ALIGN="LEFT">+ from(m : Morador) : MoradorResponse {static}<BR ALIGN="LEFT"/></TD></TR></TABLE>>];
+  CategoriaRequest [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#EDF8EA"><TR><TD><I>&laquo;record&raquo;</I><BR/><B>CategoriaRequest</B></TD></TR><HR/><TR><TD ALIGN="LEFT">nome : String<BR ALIGN="LEFT"/>descricao : String<BR ALIGN="LEFT"/></TD></TR></TABLE>>];
+  CategoriaResponse [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#EDF8EA"><TR><TD><I>&laquo;record&raquo;</I><BR/><B>CategoriaResponse</B></TD></TR><HR/><TR><TD ALIGN="LEFT">id : Long<BR ALIGN="LEFT"/>nome : String<BR ALIGN="LEFT"/>descricao : String<BR ALIGN="LEFT"/></TD></TR><HR/><TR><TD ALIGN="LEFT">+ from(c : Categoria) : CategoriaResponse {static}<BR ALIGN="LEFT"/></TD></TR></TABLE>>];
+  OcorrenciaRequest [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#EDF8EA"><TR><TD><I>&laquo;record&raquo;</I><BR/><B>OcorrenciaRequest</B></TD></TR><HR/><TR><TD ALIGN="LEFT">titulo, descricao, localizacao : String<BR ALIGN="LEFT"/>prioridade : Integer<BR ALIGN="LEFT"/>moradorId : Long<BR ALIGN="LEFT"/>categoriaId : Long<BR ALIGN="LEFT"/></TD></TR></TABLE>>];
+  OcorrenciaUpdateRequest [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#EDF8EA"><TR><TD><I>&laquo;record&raquo;</I><BR/><B>OcorrenciaUpdateRequest</B></TD></TR><HR/><TR><TD ALIGN="LEFT">titulo, descricao, localizacao : String<BR ALIGN="LEFT"/>prioridade : Integer<BR ALIGN="LEFT"/>status : StatusOcorrencia<BR ALIGN="LEFT"/>categoriaId : Long<BR ALIGN="LEFT"/></TD></TR></TABLE>>];
+  StatusRequest [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#EDF8EA"><TR><TD><I>&laquo;record&raquo;</I><BR/><B>StatusRequest</B></TD></TR><HR/><TR><TD ALIGN="LEFT">status : StatusOcorrencia<BR ALIGN="LEFT"/></TD></TR></TABLE>>];
+  PrioridadeRequest [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#EDF8EA"><TR><TD><I>&laquo;record&raquo;</I><BR/><B>PrioridadeRequest</B></TD></TR><HR/><TR><TD ALIGN="LEFT">prioridade : Integer<BR ALIGN="LEFT"/></TD></TR></TABLE>>];
+  OcorrenciaResponse [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#EDF8EA"><TR><TD><I>&laquo;record&raquo;</I><BR/><B>OcorrenciaResponse</B></TD></TR><HR/><TR><TD ALIGN="LEFT">id : Long<BR ALIGN="LEFT"/>titulo, descricao, localizacao : String<BR ALIGN="LEFT"/>prioridade : Integer<BR ALIGN="LEFT"/>status : StatusOcorrencia<BR ALIGN="LEFT"/>dataCriacao : LocalDateTime<BR ALIGN="LEFT"/>moradorId : Long, moradorNome : String<BR ALIGN="LEFT"/>categoriaId : Long, categoriaNome : String<BR ALIGN="LEFT"/></TD></TR><HR/><TR><TD ALIGN="LEFT">+ from(o : Ocorrencia) : OcorrenciaResponse {static}<BR ALIGN="LEFT"/></TD></TR></TABLE>>];
+
+  Morador [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#EAF3FF"><TR><TD><B>Morador</B></TD></TR></TABLE>>];
+  Categoria [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#EAF3FF"><TR><TD><B>Categoria</B></TD></TR></TABLE>>];
+  Ocorrencia [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#FFF6E0"><TR><TD><B>Ocorrencia</B></TD></TR></TABLE>>];
+
+  MoradorResponse -> Morador [label="converte de"];
+  CategoriaResponse -> Categoria [label="converte de"];
+  OcorrenciaResponse -> Ocorrencia [label="converte de"];
+}
