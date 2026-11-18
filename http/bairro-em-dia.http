@@ -121,3 +121,17 @@ PATCH {{host}}/ocorrencias/1/status
 Content-Type: application/json
 
 { "status": "RESOLVIDA" }
+
+### Teste de cadastro na nuvem
+POST https://bairroemdia-java.onrender.com/categorias
+Content-Type: application/json
+
+{
+  "nome": "Iluminacao publica"
+}
+
+### Consulta da categoria na nuvem
+GET https://bairroemdia-java.onrender.com/categorias/2
+
+### Exclusao da categoria na nuvem
+DELETE https://bairroemdia-java.onrender.com/categorias/2
