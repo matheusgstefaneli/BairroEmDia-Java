@@ -1,2 +1,15 @@
-GitHub: <PREENCHER>
-Deploy (Render): <PREENCHER>
+PROJETO BAIRRO EM DIA - GLOBAL SOLUTION
+
+Repositorio GitHub:
+https://github.com/matheusgstefaneli/BairroEmDia-Java
+
+API REST - Deploy no Render:
+https://bairroemdia-java.onrender.com
+
+Endpoints para consulta:
+
+Moradores:
+https://bairroemdia-java.onrender.com/moradores
+
+Ocorrencias:
+https://bairroemdia-java.onrender.com/ocorrencias
