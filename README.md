@@ -93,23 +93,39 @@ mvn test
 ```
 Os testes de API usam H2 em memória (perfil `test`) — **somente nos testes**. `OracleConexaoTest` só roda se `DB_URL` estiver definida e valida a conexão real com o Oracle.
 
+### Resultados dos testes
+
+- Total de testes: 43.
+- Testes aprovados: 41.
+- Falhas: 0.
+- Erros: 0.
+- Testes ignorados: 2.
+- Resultado: BUILD SUCCESS.
+
+A conexão real com o Oracle FIAP foi validada
+separadamente durante o deploy no Render.
+
 ## Deploy no Render
 O Render não possui runtime Java nativo, por isso o projeto usa `Dockerfile`.
 1. Suba o projeto no GitHub (ver abaixo).
 2. No Render: **New > Web Service** > conecte o repositório > *Runtime/Language*: **Docker** > plano *Free*.
 3. Em *Environment*, crie `DB_URL`, `DB_USER`, `DB_PASSWORD` (mesmos valores do passo local).
 4. (Opcional) *Health Check Path*: `/`.
-5. Aguarde o deploy e teste: `https://SEU-SERVICO.onrender.com/` e `/ocorrencias`.
+5. Aguarde o deploy e teste:
+   - https://bairroemdia-java.onrender.com/
+   - https://bairroemdia-java.onrender.com/moradores
+   - https://bairroemdia-java.onrender.com/categorias
+   - https://bairroemdia-java.onrender.com/ocorrencias
 
 **Atenção:** o Render precisa conseguir alcançar o Oracle da FIAP pela internet. Se `/` responde mas `/moradores` retorna 500, veja os *Logs* do Render: normalmente é a conexão com o banco (host/porta/serviço errados, firewall ou credenciais). O plano free "dorme" após inatividade; a primeira requisição pode levar cerca de 1 minuto.
 
 ## GitHub
-```
-git init
-git add .
-git commit -m "Bairro em Dia - Global Solution 2026.2"
-git branch -M main
-git remote add origin <URL-DO-SEU-REPOSITORIO>
-git push -u origin main
-```
-Nunca faça commit de credenciais (o `.gitignore` já ignora `.env`). **Commits após o prazo podem zerar a parte técnica.**
+
+O código-fonte do projeto está disponível no repositório público:
+
+https://github.com/matheusgstefaneli/BairroEmDia-Java
+
+Branch principal: `master`.
+
+Nunca faça commit de credenciais (o `.gitignore` já ignora `.env`).
+**Commits após o prazo podem zerar a parte técnica.**
