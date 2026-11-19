@@ -6,8 +6,8 @@ API RESTful para registro, acompanhamento e priorização de problemas urbanos (
 Professor: Gilberto Alexandre das Neves · Turma 2ESPI
 Aluno: **Matheus Gomes Stefaneli** · RM **562277** · Desenvolvimento individual
 
-- Repositório GitHub: `<PREENCHER: link do repositório>`
-- Deploy (Render): `<PREENCHER: link do serviço>`
+- Repositório GitHub: https://github.com/matheusgstefaneli/BairroEmDia-Java
+- Deploy (Render): https://bairroemdia-java.onrender.com
 
 ## Arquitetura
 
